@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApiTarefas.Tarefas;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiTarefas.Data
 {
@@ -9,6 +10,7 @@ namespace ApiTarefas.Data
         {            
         }
 
+        public DbSet<Tarefa> Tarefas { get; set;}
 
     }
 }

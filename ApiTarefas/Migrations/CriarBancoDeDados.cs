@@ -5,7 +5,7 @@
 namespace ApiTarefas.Migrations
 {
     /// <inheritdoc />
-    public partial class CriacaoBanco : Migration
+    public partial class CriarBancoDeDados : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

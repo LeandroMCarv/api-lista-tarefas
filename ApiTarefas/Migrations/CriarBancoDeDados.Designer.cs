@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiTarefas.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("CriacaoBanco")]
-    partial class CriacaoBanco
+    [Migration("CriarBancoDeDados")]
+    partial class CriarBancoDeDados
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
