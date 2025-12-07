@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiTarefas.Migrations
 {
-    /// <inheritdoc />
+
     public partial class CriarTarefas : Migration
     {
-        /// <inheritdoc />
+        //Definir as alterações no DB
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -31,7 +31,7 @@ namespace ApiTarefas.Migrations
                 });
         }
 
-        /// <inheritdoc />
+        //define o que deve acontecer caso a migration precise ser revertida se precisar desfazer essa mudança no banco de dados, o método vai remover a tabela
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
