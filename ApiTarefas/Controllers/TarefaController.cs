@@ -1,6 +1,7 @@
 ﻿using ApiTarefas.Data;
 using ApiTarefas.Tarefas;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiTarefas.Controllers
 {
@@ -28,13 +29,22 @@ namespace ApiTarefas.Controllers
                 {
                     return BadRequest("Dados incorretos!");
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-
-
+        [HttpGet]
+        public async Task<IActionResult> Listar()
+        {
+            var tarefas = await _context.Tarefas.ToListAsync();
+            if (tarefas == null)
+            {
+                return NotFound();
+            }
+            return Ok(tarefas);
+        }
     }
 }
