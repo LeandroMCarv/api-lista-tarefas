@@ -1,16 +1,16 @@
 using ApiTarefas.Data;
 using Microsoft.EntityFrameworkCore;
-//Scalar é a ferramentação que utilizaremos para documentação da API com interface gráfica no lugar do SWAGGER que era muito utilizado no dotnet 8
+//Scalar ï¿½ a ferramentaï¿½ï¿½o que utilizaremos para documentaï¿½ï¿½o da API com interface grï¿½fica no lugar do SWAGGER que era muito utilizado no dotnet 8
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Controladores são responsáveis por lidar com as requisições http e retornar as respostas para o cliente
+//Controladores sï¿½o responsï¿½veis por lidar com as requisiï¿½ï¿½es http e retornar as respostas para o cliente
 builder.Services.AddControllers();
-//Adiciona o Scalar para a documentação da API
+//Adiciona o Scalar para a documentaï¿½ï¿½o da API
 builder.Services.AddOpenApi();
 
-//Defini que o SQLServer vai ser o provedor de banco de dados utilizado e a string de conexão que está no appsettings.json
+//Defini que o SQLServer vai ser o provedor de banco de dados utilizado e a string de conexï¿½o que estï¿½ no appsettings.json
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
@@ -19,7 +19,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    //Adiciona o Scalar na pipeline de requisições e permite testar endpoints
+    //Adiciona o Scalar na pipeline de requisiï¿½ï¿½es e permite testar endpoints
     app.MapScalarApiReference();
     app.MapOpenApi();
 }

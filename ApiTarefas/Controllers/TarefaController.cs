@@ -3,48 +3,50 @@ using ApiTarefas.Tarefas;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiTarefas.Controllers
+namespace ApiTarefas.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TarefaController : Controller
 {
-    public class TarefaController : Controller
+    private readonly AppDbContext _context;
+    public TarefaController(AppDbContext context)
     {
-        private readonly AppDbContext _context;
-        public TarefaController(AppDbContext context)
-        {
-            _context = context;
-        }
+        _context = context;
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> Criar(Tarefa tarefa)
+    [HttpPost]
+    public async Task<IActionResult> Criar(Tarefa tarefa)
+    {
+        try
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Tarefas.Add(tarefa);
-                    await _context.SaveChangesAsync();//Por usar o método assincrono ele espera salvar para prosseguir
+                _context.Tarefas.Add(tarefa);
+                await _context.SaveChangesAsync();//Por usar o método assincrono ele espera salvar para prosseguir
 
-                    return Created();
-                }
-                else
-                {
-                    return BadRequest("Dados incorretos!");
-                }
+                return Created();
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Dados incorretos!");
             }
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Listar()
+        catch (Exception ex)
         {
-            var tarefas = await _context.Tarefas.ToListAsync();
-            if (tarefas == null)
-            {
-                return NotFound();
-            }
-            return Ok(tarefas);
+            return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Listar()
+    {
+        var tarefas = await _context.Tarefas.ToListAsync();
+        if (tarefas == null)
+        {
+            return NotFound();
+        }
+        return Ok(tarefas);
+    }
 }
+
