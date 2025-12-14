@@ -48,5 +48,16 @@ public class TarefaController : Controller
         }
         return Ok(tarefas);
     }
+
+    [HttpGet("id")]
+    public async Task<IActionResult> ListarPorId(int id)
+    {
+        var tarefa = await _context.Tarefas.FindAsync(id);
+        if (tarefa == null)
+        {
+            return NotFound();
+        }
+        return Ok(tarefa);
+    }
 }
 
