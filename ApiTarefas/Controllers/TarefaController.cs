@@ -59,5 +59,25 @@ public class TarefaController : Controller
         }
         return Ok(tarefa);
     }
+
+    [HttpDelete("id")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        try
+        {
+            var tarefa = await _context.Tarefas.FindAsync(id);
+            if(tarefa == null)
+            {
+                return NotFound();
+            }
+            _context.Tarefas.Remove(tarefa);
+            await _context.SaveChangesAsync();
+            return Ok();
+
+        }catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
 
