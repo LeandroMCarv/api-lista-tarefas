@@ -79,5 +79,32 @@ public class TarefaController : Controller
             return BadRequest(e.Message);
         }
     }
+    [HttpPut("id")]
+    public async Task<IActionResult> Update(Tarefa tarefa)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var tarefaEditar = await _context.Tarefas.FindAsync(tarefa.Id);
+                tarefaEditar.Status = tarefa.Status;
+                tarefaEditar.Descricao = tarefa.Descricao;
+                tarefaEditar.Prazo = tarefa.Prazo;
+                tarefaEditar.Prioridade = tarefa.Prioridade;
+                tarefaEditar.Finalizado = tarefa.Finalizado;
+                tarefaEditar.Responsavel = tarefa.Responsavel;
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Dados incorretos!");
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
 
