@@ -161,6 +161,7 @@ http://localhost:5021/scalar
 
 ## 📌 Observações
 
+- O projeto utiliza .NET 9.
 - O projeto utiliza **Entity Framework Core** com migrations.
 - O ambiente de desenvolvimento já está configurado para HTTPS e HTTP.
 - O Scalar substitui o Swagger para documentação e testes dos endpoints.
